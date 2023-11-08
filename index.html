@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Classification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #10b8c1;
+            text-align: center;
+            margin: 150px;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 30px;
+            box-shadow: 0 0 90px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333333;
+        }
+
+        input[type="number"] {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #ffffff;
+            padding: 10px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #56c65c;
+        }
+
+        h2 {
+            color: #ae0a90;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Enter Your Age:</h1>
+        <input type="number" id="ageInput" required>
+        <button onclick="classifyAge()">Classify</button>
+        <h2 id="result"></h2>
+    </div>
+
+    <script>
+
+        function classifyAge() 
+        {
+            // Get user input from the input field
+            let ageInput = document.getElementById("ageInput");
+
+            // Check if the input is valid (not empty and meets other requirements)
+            if (ageInput.checkValidity()) {
+                let age = parseInt(ageInput.value); // Parse the input as an integer
+
+                // Classify age using ternary operator
+                let result =   `You are a 
+                    ${(age <= 12) ? "child" :
+                    (age <= 19) ? "teenager" :
+                    (age <= 35) ? "young adult" :
+                    (age <= 60) ? "adult" :
+                    (age > 60) ? "senior citizen" : "Invalid input."}`;
+
+                // Display the result
+                document.getElementById("result").textContent = result;
+            } else {
+                // If input is not valid, display an error message
+                document.getElementById("result").textContent = "Please enter a valid age.";
+            }
+        }
+    </script>
+</body>
+
+</html>
